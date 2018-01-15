@@ -115,7 +115,7 @@ public class UploadExcelController {
                   event = new UploadEvent();
                   event.setState(product);
                   event.setEventType("progress");
-                  brokerMessagingTemplate.convertAndSend("/topics/event", JSON.toJSONString(event, SerializerFeature.BrowserCompatible));
+                  brokerMessagingTemplate.convertAndSend("/topics/" + token + "/event", JSON.toJSONString(event, SerializerFeature.BrowserCompatible));
 
                   Thread.sleep(5000L);
                }
@@ -125,7 +125,7 @@ public class UploadExcelController {
                event.setState("Uploaded filed deleted on server");
                fh.delete();
                event.setEventType("end");
-               brokerMessagingTemplate.convertAndSend("/topics/event", JSON.toJSONString(event, SerializerFeature.BrowserCompatible));
+               brokerMessagingTemplate.convertAndSend("/topics/" + token + "/event", JSON.toJSONString(event, SerializerFeature.BrowserCompatible));
 
             }catch(Exception ex) {
                logger.error("Failed on saving product", ex);

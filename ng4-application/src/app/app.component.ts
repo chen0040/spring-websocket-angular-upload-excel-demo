@@ -18,6 +18,9 @@ export class AppComponent implements OnInit {
     username: '',
     password: ''
   };
+  excelUpload = {
+    FilePath: ''
+  };
 
   constructor(private _appService: AppService,
               private _accountService: AccountService) {
@@ -76,7 +79,30 @@ export class AppComponent implements OnInit {
       error => this.errorMessage = <any>error);
   }
 
-
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+      let file: File = fileList[0];
+      let fileSize:number=fileList[0].size;
+      if(fileSize<=10485760)
+      {
+        let formData:FormData = new FormData();
+        formData.append('file',file);
+        formData.append('token',this._accountService.getToken());
+        this._appService.uploadExcel(formData).subscribe(val => {
+          alert(val);
+        });
+      }
+      else
+      {
+        alert("File size is exceeded");
+      }
+    }
+    else
+    {
+      alert("Something went Wrong.");
+    }
+  }
 
 
 }

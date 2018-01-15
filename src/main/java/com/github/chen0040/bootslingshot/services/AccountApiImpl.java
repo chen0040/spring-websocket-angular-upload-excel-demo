@@ -42,7 +42,7 @@ public class AccountApiImpl implements AccountApi {
                 sessions.put(account.getToken(), account);
                 executor.submit(() -> {
                     try {
-                        Thread.sleep(5000L);
+                        Thread.sleep(3000L);
                         webSocketService.send(account.getToken(), "validated", "Welcome, " + username);
                     }catch(Exception ex) {
                         logger.error("Failed to send web socket validated message", ex);
@@ -68,7 +68,7 @@ public class AccountApiImpl implements AccountApi {
 
                 executor.submit(() -> {
                     try {
-                        Thread.sleep(5000L);
+                        Thread.sleep(3000L);
                         logger.info("send websocket message on validated successfully ...");
                         webSocketService.send(account.getToken(), "validated", "Welcome, " + username);
                     }catch(Exception ex) {

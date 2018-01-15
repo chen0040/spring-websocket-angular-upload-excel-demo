@@ -18,7 +18,23 @@
 <div *ngIf="authenticated">
   Welcome! {{loginObj.username}}
   <button class="btn btn-danger btn-sm" (click)="logout()">Logout</button>
-</div>
+
+  <br />
+  <hr />
+
+  <h1>Demo for Excel Upload</h1>
+
+  <a href="/samples/products.xlsx" target="_blank">Excel Sample Download</a>
+
+  <hr />
+
+  <a class="btn btn-sm btn-primary" href="javascript:;">Upload Excel File
+    <input [(ngModel)]="excelUpload.FilePath" (change)="fileChange($event)" name="ExcelFPath"
+           size="10" type="file"></a>
+
+
+  <br />
+  <hr />
 
 <h2>Websocket message from spring-boot-application: </h2>
 <table *ngIf="messages">
@@ -29,3 +45,5 @@
   </tr>
 </table>
 
+
+</div>

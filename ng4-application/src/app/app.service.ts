@@ -13,7 +13,7 @@ export class AppService {
   private ws: $WebSocket;
   private subscribers = [];
 
-  constructor() {
+  constructor(private _http : Http) {
 
   }
 
@@ -88,10 +88,14 @@ export class AppService {
       },
       {autoApply: false}
     );
+  }
 
+  uploadExcel(formData: any) {
 
+    var headers = new Headers();
 
-
+    return this._http.post('./erp/upload-excel' , formData, { headers: headers, method: 'POST' })
+      .map((res: Response) => res.json());
 
   }
 
