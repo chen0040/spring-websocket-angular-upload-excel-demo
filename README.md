@@ -1,11 +1,10 @@
-# spring-boot-excel-upload-demo
+# spring-websocket-angular-upload-excel-demo
 
-Demo project on how upload and process excel file in the spring boot
+Demo project on how upload and process excel file in the spring boot + Web Socket + Angular 4
 
 # Features
 
 * Upload and process Excel file
-* Upload and process large CSV file
 * Allow Async callback and websocket to report progress on loading data into database (mocked database used here)
 * Allow Large file upload and long running process using guava concurrency
 
@@ -39,7 +38,7 @@ any account below:
 * username: admin password: admin
 * username: user password: user
 
-The websocket implementation that subscribe to "/topics/event" websocket topic of the spring-boot-application can be found in the app.service.ts and app.component.ts
+The websocket implementation that subscribe to "/topics/" + token + "/event" websocket topic of the spring-boot-application can be found in the app.service.ts and app.component.ts
 
 Once at http://localhost:8080, click "Excel Sample Download" to download a csv sample, then click "Choose File" to load the
 downloaded Excel sample,and then click "Upload Excel", you will notice that as the product is being saved on the remote server,
