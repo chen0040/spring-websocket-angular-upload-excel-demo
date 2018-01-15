@@ -32,7 +32,7 @@ export class AppService {
 
   connectWebsocket(token) {
     // connect
-    this.ws = new $WebSocket("ws://localhost:8080/my-ws/websocket");
+    this.ws = new $WebSocket("ws://localhost:9300/erp/websocket");
     // you can send immediately after connect,
     // data will cached until connect open and immediately send or connect fail.
 
@@ -61,7 +61,7 @@ export class AppService {
           console.log("complete");
         }
       );
-      var topic = "/topics/event";
+      var topic = "/topics/" + token + "/event";
       var id = token;
       this.ws.send("SUBSCRIBE\nid:"+id+"\ndestination:" + topic + "\n\n\0").subscribe(
         (msg)=> {
