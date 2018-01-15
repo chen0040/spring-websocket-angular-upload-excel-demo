@@ -4,6 +4,21 @@
     Welcome to {{title}}!
   </h1>
 </div>
+
+<div *ngIf="!authenticated">
+  <div style="margin:10px" *ngIf="loginInProcess">
+    Username: <input type="text" [(ngModel)]="loginObj.username" />
+    Password: <input type="password" [(ngModel)]="loginObj.password" />
+    <button class="btn btn-primary btn-sm" (click)="loginConfirm()">OK</button>
+    <button class="btn btn-danger btn-sm" (click)="loginCancel()">Cancel</button>
+  </div>
+  <button class="btn btn-primary btn-sm" (click)="login()" style="margin:10px" *ngIf="!loginInProcess"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
+</div>
+
+<div *ngIf="authenticated">
+  <button class="btn btn-danger btn-sm" (click)="logout()">Logout</button>
+</div>
+
 <h2>Websocket message from spring-boot-application: </h2>
 <table *ngIf="messages">
   <tr *ngFor="let message of messages">

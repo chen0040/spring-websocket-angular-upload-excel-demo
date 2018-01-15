@@ -30,7 +30,7 @@ export class AppService {
     this.subscribers.push(handler);
   }
 
-  connectWebsocket() {
+  connectWebsocket(token) {
     // connect
     this.ws = new $WebSocket("ws://localhost:8080/my-ws/websocket");
     // you can send immediately after connect,
@@ -62,7 +62,8 @@ export class AppService {
         }
       );
       var topic = "/topics/event";
-      this.ws.send("SUBSCRIBE\nid:sub-001\ndestination:" + topic + "\n\n\0").subscribe(
+      var id = token;
+      this.ws.send("SUBSCRIBE\nid:"+id+"\ndestination:" + topic + "\n\n\0").subscribe(
         (msg)=> {
           console.log("next", msg.data);
         },
